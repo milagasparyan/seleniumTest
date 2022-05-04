@@ -9,15 +9,14 @@ from selenium.webdriver.common.action_chains import ActionChains
 # create browser 
 url = "https://demoqa.com/text-box"
 browser = webdriver.Edge("C:/Users/Matasyan/Desktop/selenium/drivers/msedgedriver.exe")
+action = ActionChains(browser)
 browser.get(url)
 browser.maximize_window()
 expectedAddress = browser.current_url
 time.sleep(2)
 # checking that correct page is open
-if expectedAddress == url:
-    print("The correct page is opened")
-else:
-    print("The wrong page is opened")
+
+assert expectedAddress == url
 
 # finding fields and filling them
 fullName = browser.find_element(By.ID, 'userName')
@@ -35,7 +34,7 @@ time.sleep(1)
 
 #clicking on submit button
 
-action = ActionChains(browser)
+
 submitButton = browser.find_element(By.ID, "submit")
 
 action.move_to_element(submitButton)
@@ -48,11 +47,7 @@ textBox = browser.find_element(By.ID, 'output')
 actualText = textBox.text
 
 expectedText = "Name:Mila\nEmail:milagasparyan@gmail.com\nCurrent Address :something\nPermananet Address :something else"
-try:
-    assert expectedText in actualText
-    print ("the text is correct")
-except:
-    print("the text is incorect")
 
-time.sleep(2)
+assert expectedText == actualText
+
 browser.quit()
