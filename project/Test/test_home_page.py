@@ -28,6 +28,7 @@ def test_1():
     actualPrice = obj_home.getPriceText(browser)
     expectedPrice = "75"
     assert actualText == expectedText
+    
 
     #Click on "Proceed to checkout" button
 
